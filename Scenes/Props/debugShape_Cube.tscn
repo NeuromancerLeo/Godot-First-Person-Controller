@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=4 uid="uid://bua2kp2sa8bkw"]
+
+[ext_resource type="Script" path="res://Scripts/Props/DebugShapeCube.cs" id="1_juiyp"]
+[ext_resource type="Texture2D" uid="uid://cfxywihntd15s" path="res://Textures/debugShape_Cube_debugShape_Cube.png" id="1_x4wvb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dddi2"]
+resource_name = "Material"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_x4wvb")
+roughness = 0.5
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_seydr"]
+resource_name = "debugShape_Cube_立方体 Cube"
+_surfaces = [{
+"aabb": AABB(-0.05, -0.05, -0.05, 0.1, 0.1, 0.1),
+"attribute_data": PackedByteArray("AAAAAAAAAAAAAAAA/v8AAAAAAAAAAP7/AAAAAAAA/v/+/wAAAAD+//7/AAD+//7/AAD+//7/AAAAAAAA/v/+/wAA/v/+/wAA/v8AAP7///8AAP7//v/+//7//v/+//7/"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AgALAAUAAgAIAAsABgAVAAkABgASABUAFAARABcAFAAOABEADAADAA8ADAAAAAMABwANABMABwABAA0AFgAEAAoAFgAQAAQA"),
+"material": SubResource("StandardMaterial3D_dddi2"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAP///78AAAAA/////wAAAAD///+/AAD//////78AAP///////wAA//////+/AAAAAAAA//8AAAAAAAD//wAAAAAAAP+/AAD//wAA//8AAP//AAD//wAA//8AAP+///8AAP///7///wAA////////AAD//////////////7////////////////////////8AAAAA/////wAAAAD/////AAAAAP///////wAA////////AAD///////8AAP///3//f/9//z//f////3//f/9//7//f////z//v/9//z//f////z//v/9//7//f////3//f/9//z//v/9//3//f/9//7//v/9//z//v/9//z//v/9//z//v/9//7//v/9/")
+}]
+blend_shape_mode = 0
+
+[node name="debugShape_Cube" type="Node3D"]
+script = ExtResource("1_juiyp")
+
+[node name="Cube" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_seydr")
+skeleton = NodePath("")

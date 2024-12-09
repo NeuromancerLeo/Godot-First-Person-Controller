@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dcvsw8la80f26"
+path="res://.godot/imported/te_Road_Railling01.obj-b7fe5da8d1ed6d3a94c43b547f701205.mesh"
+
+[deps]
+
+files=["res://.godot/imported/te_Road_Railling01.obj-b7fe5da8d1ed6d3a94c43b547f701205.mesh"]
+
+source_file="res://Models/Vox models/te_Road_Railling01.obj"
+dest_files=["res://.godot/imported/te_Road_Railling01.obj-b7fe5da8d1ed6d3a94c43b547f701205.mesh", "res://.godot/imported/te_Road_Railling01.obj-b7fe5da8d1ed6d3a94c43b547f701205.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

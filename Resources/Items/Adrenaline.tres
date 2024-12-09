@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=2 format=3 uid="uid://6wa3vknasthq"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/ItemResource.cs" id="1_gcowd"]
+
+[resource]
+script = ExtResource("1_gcowd")
+_id = 3
+_type = "Medical supplies"
+_name = "肾上腺素"
+_maximumStackQuantity = 1
+_description = "配发给军队的作为战斗时的应急针剂，内含肾上腺素，使用后在短时间内会大幅提升移动速度。"

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqi3vu5f4rkt6"]
+
+[ext_resource type="Script" path="res://Scripts/Item/ItemDatabase/ItemDatabase.cs" id="1_4g4gm"]
+[ext_resource type="Script" path="res://Scripts/Item/ItemDatabase/ItemMethodManager.cs" id="2_a2mih"]
+[ext_resource type="Script" path="res://Scripts/Item/ItemDatabase/ItemNodeSceneSet.cs" id="3_kelsa"]
+
+[node name="ItemDatabase" type="Node"]
+script = ExtResource("1_4g4gm")
+_itemResourceFolderDir = "res://Resources/Items"
+
+[node name="ItemMethodManager" type="Node" parent="."]
+script = ExtResource("2_a2mih")
+
+[node name="ItemNodeSceneSet" type="Node" parent="."]
+script = ExtResource("3_kelsa")
+_itemNodeSceneResourceFolderDir = "res://Resources/ItemNodeScenes"

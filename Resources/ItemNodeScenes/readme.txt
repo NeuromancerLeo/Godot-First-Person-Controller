@@ -1,0 +1,2 @@
+-这个文件夹存放了所有的ItemNodeSceneResource文件，命名规则为Item的名字+Use/Equip。
+-ItemNodeSceneResource文件为godot的资源文件(Resource，.tres)，每个资源文件包含一个唯一的ItemID（用来区分）和一个包含了实现方法的节点场景（实例化到场景便能执行一系列操作）

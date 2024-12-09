@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=2 format=3 uid="uid://dqh1x3x7txi2n"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/ItemResource.cs" id="1_70np1"]
+
+[resource]
+script = ExtResource("1_70np1")
+_id = 2
+_type = "Food"
+_name = "矿泉水"
+_maximumStackQuantity = 1
+_description = "一瓶干净未开封的矿泉水，勤喝水有助于身体健康。"

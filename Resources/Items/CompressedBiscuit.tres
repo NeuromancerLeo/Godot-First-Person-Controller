@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=2 format=3 uid="uid://d3auqcsuxhg1v"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/ItemResource.cs" id="1_f3yro"]
+
+[resource]
+script = ExtResource("1_f3yro")
+_id = 1
+_type = "Food"
+_name = "压缩饼干"
+_maximumStackQuantity = 99
+_description = "压缩饼干通过抽走包装内的空气以达到延长保存时间的目的，这使得饼干本身变得十分干硬，建议食用时就着水喝。"

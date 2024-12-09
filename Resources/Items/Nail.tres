@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemResource" load_steps=2 format=3 uid="uid://b1wue8xcgb5jn"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/ItemResource.cs" id="1_dwkjc"]
+
+[resource]
+script = ExtResource("1_dwkjc")
+_id = 0
+_type = "Modification parts"
+_name = "钉子"
+_maximumStackQuantity = 99
+_description = "很常见的钉子，在手工制作里用途广泛。"

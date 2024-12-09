@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5ftvpcafe2rk"]
+
+[ext_resource type="Script" path="res://Scripts/Item/ItemUsingOrEquip/AdrenalineUsing.cs" id="1_waeoo"]
+
+[node name="AdrenalineUsing" type="Node"]
+script = ExtResource("1_waeoo")

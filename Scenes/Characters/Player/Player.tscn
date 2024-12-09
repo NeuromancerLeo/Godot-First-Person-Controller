@@ -1,0 +1,124 @@
+[gd_scene load_steps=12 format=3 uid="uid://bcvp2680pfq1x"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/Player/BasicMovementManager.cs" id="1_sc64b"]
+[ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerCameraSmoothing.cs" id="2_7li0q"]
+[ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerHeadLeaning.cs" id="2_etq1k"]
+[ext_resource type="Script" path="res://Scripts/Characters/Player/StairDetector.cs" id="3_bsoh3"]
+[ext_resource type="Script" path="res://Scripts/Characters/Player/LeaningDetector.cs" id="4_vuequ"]
+[ext_resource type="PackedScene" uid="uid://bte4wvkf1t18g" path="res://Scenes/UI/ui.tscn" id="5_g5lxb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iryt3"]
+albedo_color = Color(0.304159, 0.325006, 0.329152, 0.027451)
+roughness = 0.1
+normal_scale = -15.66
+rim_enabled = true
+clearcoat_enabled = true
+clearcoat = 0.4
+clearcoat_roughness = 0.27
+refraction_scale = 0.03
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_77j7b"]
+material = SubResource("StandardMaterial3D_iryt3")
+radius = 0.3
+height = 1.8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5xl80"]
+margin = 0.001
+radius = 0.3
+height = 1.8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qeun0"]
+radius = 0.2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8poqx"]
+radius = 0.2
+height = 0.4
+
+[node name="Player" type="CharacterBody3D"]
+physics_interpolation_mode = 1
+collision_layer = 32768
+floor_max_angle = 0.808087
+
+[node name="BasicMovementManager" type="Node" parent="." node_paths=PackedStringArray("playerBody", "collision", "topCast", "headPivot", "head", "stairDetector")]
+script = ExtResource("1_sc64b")
+playerBody = NodePath("..")
+collision = NodePath("../Collision")
+topCast = NodePath("../StandUpTopCast")
+headPivot = NodePath("../HeadPivot")
+head = NodePath("../HeadPivot/head")
+stairDetector = NodePath("../StairDetector")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_77j7b")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+physics_interpolation_mode = 1
+editor_description = "玩家移动用的碰撞体"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_5xl80")
+
+[node name="HeadPivot" type="Node3D" parent="." node_paths=PackedStringArray("detector")]
+editor_description = "实现了玩家的侧身功能，该节点也负责响应玩家的蹲起"
+script = ExtResource("2_etq1k")
+detector = NodePath("../LeaningDetector")
+
+[node name="head" type="Node3D" parent="HeadPivot"]
+editor_description = "搭载玩家相机"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="playerCamera" type="Camera3D" parent="HeadPivot/head" node_paths=PackedStringArray("target")]
+fov = 85.0
+near = 0.01
+script = ExtResource("2_7li0q")
+target = NodePath("..")
+
+[node name="StandUpTopCast" type="RayCast3D" parent="."]
+editor_description = "用于玩家蹲下时站起的头部检测"
+target_position = Vector3(0, 1.8, 0)
+
+[node name="LeaningDetector" type="Node3D" parent="." node_paths=PackedStringArray("head", "leftShapeCast", "rightShapeCast")]
+editor_description = "侧身检测用，当检测到障碍（如墙壁）时使玩家不能侧身"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+script = ExtResource("4_vuequ")
+head = NodePath("../HeadPivot/head")
+leftShapeCast = NodePath("leftShapeCast")
+rightShapeCast = NodePath("rightShapeCast")
+
+[node name="leftShapeCast" type="ShapeCast3D" parent="LeaningDetector"]
+editor_description = "若检测障碍碰撞，则玩家不可进行侧身操作"
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.303113, -0.15, 0)
+shape = SubResource("SphereShape3D_qeun0")
+target_position = Vector3(0, 0, 0)
+
+[node name="rightShapeCast" type="ShapeCast3D" parent="LeaningDetector"]
+editor_description = "若检测障碍碰撞，则玩家不可进行侧身操作"
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.303, -0.15, 0)
+shape = SubResource("CapsuleShape3D_8poqx")
+target_position = Vector3(0, 0, 0)
+
+[node name="StairDetector" type="Node3D" parent="." node_paths=PackedStringArray("playerBody", "stairsAheadRayCast", "stairsBelowRayCast")]
+editor_description = "实现了玩家上阶梯功能"
+script = ExtResource("3_bsoh3")
+playerBody = NodePath("..")
+stairsAheadRayCast = NodePath("stairsAheadRayCast")
+stairsBelowRayCast = NodePath("stairsBelowRayCast")
+
+[node name="stairsAheadRayCast" type="RayCast3D" parent="StairDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.479615, -0.432227)
+target_position = Vector3(0, -0.35, 0)
+debug_shape_custom_color = Color(1, 1, 0, 1)
+
+[node name="stairsBelowRayCast" type="RayCast3D" parent="StairDetector"]
+editor_description = "该射线检测一定距离的下方是否为地面，如果没有碰撞，说明在下方这段距离没有可供玩家角色站立/吸附的地方"
+target_position = Vector3(0, -0.35, 0)
+debug_shape_custom_color = Color(1, 1, 0, 1)
+
+[node name="Ui" parent="." instance=ExtResource("5_g5lxb")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+mouse_filter = 1
