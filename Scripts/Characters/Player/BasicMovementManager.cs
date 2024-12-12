@@ -17,7 +17,7 @@ public partial class BasicMovementManager : Node
     //模拟响应键盘按压的Input轴向量
     Vector2 inputAxis;
     ///inputDir既包含了方向也包含了具体的长度值，它并不是归一的
-    Vector2 inputVectorWithLength;
+    Vector2 inputDirectionWithLength;
 
     [Export]
     private CharacterBody3D playerBody;
@@ -42,13 +42,13 @@ public partial class BasicMovementManager : Node
 
     [ExportCategory("移动相关")]
     [Export]
-    private float desiredSpeedWhenMove = 2.5f;//玩家目前移动时的速度期望值
+    private float desiredSpeedWhenPlayerIsMoving = 2.5f;//当玩家移动时，其速度的期望值
     [Export]
     public float walkingSpeed = 2.5f;//正常前进速度
     [Export]
     public float ambleSpeed = 1.25f;//慢步速度
     [Export]
-    public float speedOfSwithToAmble = 3f;
+    public float transitionToAmbleSpeed = 3f;
     [Export]
     public float sprintingSpeed = 5.5f;//奔跑速度
     [Export]
@@ -94,7 +94,7 @@ public partial class BasicMovementManager : Node
     /// <para>注：需要依靠物理帧（并传入 <paramref name="delta"/>）来调用执行</para>
     /// </summary>
     /// <returns>一个由 WASD 按键控制的 <see cref="Godot.Vector2"/> 对象, 最大模长为1.</returns>
-    private Vector2 GetWasdVector(float sensitivity, double delta)
+    private Vector2 GetVectorFromWasd(float sensitivity, double delta)
     {
         //处理模拟的InputX轴
         //若无输入，
@@ -372,7 +372,8 @@ public partial class BasicMovementManager : Node
     }
 
     /// <summary>
-    /// 通过监听 <see cref="Input"/> 的输入和修改 <see cref="velocity"/> 来处理玩家的跳跃 
+    /// 通过监听 <see cref="Input"/> 的输入和修改 <see cref="velocity"/> 来处理玩家的跳跃
+    /// <para>注：其在每个物理帧被调用执行</para>
     /// </summary>
     private void HandleJump()
     {
@@ -391,25 +392,25 @@ public partial class BasicMovementManager : Node
     }
 
     /// <summary>
-    /// <see cref="desiredSpeedWhenMove"/> 的换挡判断, 该变量会参与最后的 <see cref="velocity"/> 的计算 
+    /// 根据玩家的输入来对 <see cref="desiredSpeedWhenPlayerIsMoving"/> 进行的换挡判断. 
+    /// <para>注：需要依靠物理帧（并传入 delta）来调用执行</para>
     /// </summary>
-    /// <param name="delta"></param>
     private void SpeedShiftJudge(double delta)
     {
         //根据是否奔跑或蹲下或步行来修改Character的速度挡位
         //如果玩家是蹲下的,
         if (IsSquat == true)
         {
-            if (desiredSpeedWhenMove != squattingSpeed)
+            if (desiredSpeedWhenPlayerIsMoving != squattingSpeed)
             {
                 //则递减至目标速度
-                desiredSpeedWhenMove -= transitionSprintToSquatSpeed * (float)delta;
+                desiredSpeedWhenPlayerIsMoving -= transitionSprintToSquatSpeed * (float)delta;
+                if (desiredSpeedWhenPlayerIsMoving < squattingSpeed)
+                {
+                    desiredSpeedWhenPlayerIsMoving = squattingSpeed;
+                }
             }
 
-            if (desiredSpeedWhenMove < squattingSpeed)
-            {
-                desiredSpeedWhenMove = squattingSpeed;
-            }
             return;
         }
         else
@@ -417,33 +418,35 @@ public partial class BasicMovementManager : Node
             //如果按下了奔跑键且按下了前进键则速度修改至奔跑
             if (Input.IsActionPressed("movement_sprint") && Input.IsActionPressed("movement_forward"))
             {
-                //根据切换速度将currentSpeedWhenMove切换到奔跑的速度
-                desiredSpeedWhenMove += transitionToSprintSpeed * (float)delta;
-                if (desiredSpeedWhenMove > sprintingSpeed)
+                //根据切换速度将 desiredSpeedWhenPlayerIsMoving 切换到奔跑的速度
+                desiredSpeedWhenPlayerIsMoving += transitionToSprintSpeed * (float)delta;
+                if (desiredSpeedWhenPlayerIsMoving > sprintingSpeed)
                 {
-                    desiredSpeedWhenMove = sprintingSpeed;
+                    desiredSpeedWhenPlayerIsMoving = sprintingSpeed;
                 }
             }
-            else if (desiredSpeedWhenMove > walkingSpeed)
+            //如果没有奔跑但是速度大于正常前进速度的
+            else if (desiredSpeedWhenPlayerIsMoving > walkingSpeed)
             {
-                //如果没有奔跑但是速度大于奔跑速度的,根据切换速度将currentSpeedWhenMove切换到正常移动的速度
-                desiredSpeedWhenMove -= transitionSprintToWalkSpeed * (float)delta;
-                if (desiredSpeedWhenMove < walkingSpeed)
+                //根据切换速度将 desiredSpeedWhenPlayerIsMoving 切换到正常前进的速度
+                desiredSpeedWhenPlayerIsMoving -= transitionSprintToWalkSpeed * (float)delta;
+                if (desiredSpeedWhenPlayerIsMoving < walkingSpeed)
                 {
-                    desiredSpeedWhenMove = walkingSpeed;
+                    desiredSpeedWhenPlayerIsMoving = walkingSpeed;
                 }
             }
+            //如果没有奔跑且速度也不大于正常前进速度的,我们检查是否按下慢步键
             else if (Input.IsActionPressed("movement_amble"))
             {
-                desiredSpeedWhenMove -= speedOfSwithToAmble * (float)delta;
-                if (desiredSpeedWhenMove < ambleSpeed)
+                desiredSpeedWhenPlayerIsMoving -= transitionToAmbleSpeed * (float)delta;
+                if (desiredSpeedWhenPlayerIsMoving < ambleSpeed)
                 {
-                    desiredSpeedWhenMove = ambleSpeed;
+                    desiredSpeedWhenPlayerIsMoving = ambleSpeed;
                 }
             }
             else
             {
-                desiredSpeedWhenMove = walkingSpeed;
+                desiredSpeedWhenPlayerIsMoving = walkingSpeed;
             }
 
         }
@@ -503,7 +506,7 @@ public partial class BasicMovementManager : Node
     {
         //锁🔒鼠标
         Input.MouseMode = Input.MouseModeEnum.Captured;
-        //获取相关节点
+        //获取相关节点 (现已全部使用export变量来获取, 不再使用 GetNode 方法.
         //collision = GetNode<CollisionShape3D>("playerCollision");
         //topCast = GetNode<RayCast3D>("topCast");
         //head = GetNode<Node3D>("head");
@@ -536,7 +539,7 @@ public partial class BasicMovementManager : Node
     public override void _PhysicsProcess(double delta)
     {
 
-        inputVectorWithLength = GetWasdVector(inputAxisSensitivity, delta);
+        inputDirectionWithLength = GetVectorFromWasd(inputAxisSensitivity, delta);
 
         velocity = playerBody.Velocity;
 
@@ -549,13 +552,13 @@ public partial class BasicMovementManager : Node
         HandleJump();
 
         //Transform.Basis是3x3矩阵，用于将矢量从世界坐标系转换到 playerBody 的局部坐标系
-        Vector3 directionWithLength = (playerBody.Transform.Basis * new Vector3(inputVectorWithLength.X, 0, -inputVectorWithLength.Y));
+        Vector3 MovingDirectionWithLength = (playerBody.Transform.Basis * new Vector3(inputDirectionWithLength.X, 0, -inputDirectionWithLength.Y));
 
         //如果有角色移动的输入，修改 playerBody.Velocity
         if (Input.IsActionPressed("movement_forward") | Input.IsActionPressed("movement_backward") | Input.IsActionPressed("movement_left") | Input.IsActionPressed("movement_right"))
         {
-            velocity.X = directionWithLength.X * desiredSpeedWhenMove;
-            velocity.Z = directionWithLength.Z * desiredSpeedWhenMove;
+            velocity.X = MovingDirectionWithLength.X * desiredSpeedWhenPlayerIsMoving;
+            velocity.Z = MovingDirectionWithLength.Z * desiredSpeedWhenPlayerIsMoving;
         }
         else
         {
