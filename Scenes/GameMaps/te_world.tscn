@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://dmm8sf7ulyvq0"]
+[gd_scene load_steps=43 format=4 uid="uid://dmm8sf7ulyvq0"]
 
 [ext_resource type="Texture2D" uid="uid://gjg6r15u6ov4" path="res://Textures/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_ihvd8"]
 [ext_resource type="Script" path="res://Scenes/GameMaps/GameLoop.cs" id="1_pvh21"]
@@ -10,6 +10,7 @@
 [ext_resource type="Material" uid="uid://d3i4lp1ikf0vw" path="res://Models/Materials/te_Building_ScaleBuilding.material" id="8_d2652"]
 [ext_resource type="PackedScene" path="res://addons/prototype tools/CSGStairMaker3D.tscn" id="8_hvu08"]
 [ext_resource type="PackedScene" uid="uid://b03xf0g1chji" path="res://Models/Prefabs/te_Road_Railling01.tscn" id="9_twod6"]
+[ext_resource type="PackedScene" uid="uid://nhmnv2kjskwc" path="res://Models/Lowpoly models/Road_RazorWire_01.glb" id="11_wwyru"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_504j8"]
 panorama = ExtResource("1_ihvd8")
@@ -959,3 +960,9 @@ size = Vector3(0.118401, 0.0952587, 18.7092)
 transform = Transform3D(0.91407, -0.264988, -0.307013, 0, 0.757018, -0.653394, 0.405556, 0.597248, 0.691967, -44.4318, 17.8389, -13.1447)
 use_collision = true
 size = Vector3(1.01611, 0.326141, 14.8426)
+
+[node name="Road_RazorWire_01" parent="." instance=ExtResource("11_wwyru")]
+transform = Transform3D(0.0267527, 0, -0.999642, 0, 1, 0, 0.999642, 0, 0.0267527, 8.60666, 0.0270202, 14.8168)
+
+[node name="Road_RazorWire_02" parent="." instance=ExtResource("11_wwyru")]
+transform = Transform3D(0.0215706, 0, -0.999767, 0, 1, 0, 0.999767, 0, 0.0215706, 3.99652, -2.38419e-07, -0.590617)
