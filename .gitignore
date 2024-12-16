@@ -16,3 +16,4 @@ mono_crash.*.json
 
 .vs/
 addons/godot-jolt/windows/~godot-jolt_windows-x64_editor.dll
+*.import
