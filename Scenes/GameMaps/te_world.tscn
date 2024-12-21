@@ -961,8 +961,8 @@ transform = Transform3D(0.91407, -0.264988, -0.307013, 0, 0.757018, -0.653394, 0
 use_collision = true
 size = Vector3(1.01611, 0.326141, 14.8426)
 
-[node name="Road_RazorWire_01" parent="." instance=ExtResource("11_wwyru")]
+[node name="Road_RazorWire_01" parent="Environment/Sence" instance=ExtResource("11_wwyru")]
 transform = Transform3D(0.0267527, 0, -0.999642, 0, 1, 0, 0.999642, 0, 0.0267527, 8.60666, 0.0270202, 14.8168)
 
-[node name="Road_RazorWire_02" parent="." instance=ExtResource("11_wwyru")]
+[node name="Road_RazorWire_02" parent="Environment/Sence" instance=ExtResource("11_wwyru")]
 transform = Transform3D(0.0215706, 0, -0.999767, 0, 1, 0, 0.999767, 0, 0.0215706, 3.99652, -2.38419e-07, -0.590617)
