@@ -34,6 +34,7 @@ config/icon="res://Textures/icon.svg"
 ItemDatabase="*res://Scenes/Gloables/ItemDatabase.tscn"
 DebugDrawSystem="*res://Scenes/Gloables/DebugDrawSystem.tscn"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
+PlayerStatisticsManager="*res://Scripts/Characters/Player/PlayerStatisticsManager.cs"
 
 [display]
 
