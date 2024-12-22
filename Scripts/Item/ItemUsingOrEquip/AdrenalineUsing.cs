@@ -6,7 +6,7 @@ using System;
 /// </summary>
 public partial class AdrenalineUsing : Node
 {
-    private PlayerBasicMovement _player;
+    /*private PlayerBasicMovement _player;
     double timer = 0;
     double duration = 10;
 
@@ -34,6 +34,6 @@ public partial class AdrenalineUsing : Node
             this.QueueFree();
         }    
       
-    }
+    }*/
 }
 

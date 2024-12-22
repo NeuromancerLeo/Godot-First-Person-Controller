@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=4 uid="uid://bua2kp2sa8bkw"]
 
-[ext_resource type="Script" path="res://Scripts/Props/DebugShapeCube.cs" id="1_juiyp"]
+[ext_resource type="Script" path="res://Scripts/InGameMap/Props/DebugShapeCube.cs" id="1_juiyp"]
 [ext_resource type="Texture2D" uid="uid://cfxywihntd15s" path="res://Textures/debugShape_Cube_debugShape_Cube.png" id="1_x4wvb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dddi2"]

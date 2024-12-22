@@ -1,8 +1,9 @@
-[gd_scene load_steps=43 format=4 uid="uid://dmm8sf7ulyvq0"]
+[gd_scene load_steps=45 format=4 uid="uid://dmm8sf7ulyvq0"]
 
+[ext_resource type="PackedScene" uid="uid://bx0fgj3y8d8hx" path="res://Scenes/InGameMap/DebugDrawSystem.tscn" id="1_be8cb"]
 [ext_resource type="Texture2D" uid="uid://gjg6r15u6ov4" path="res://Textures/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_ihvd8"]
-[ext_resource type="Script" path="res://Scenes/GameMaps/GameLoop.cs" id="1_pvh21"]
-[ext_resource type="PackedScene" uid="uid://bcvp2680pfq1x" path="res://Scenes/Characters/Player/Player.tscn" id="2_7s577"]
+[ext_resource type="PackedScene" uid="uid://bcvp2680pfq1x" path="res://Scenes/InGameMap/Characters/Player/Player.tscn" id="2_7s577"]
+[ext_resource type="PackedScene" uid="uid://bgm6f32bcyjoa" path="res://Scenes/InGameMap/PlayerStatisticsManager.tscn" id="2_qw42h"]
 [ext_resource type="Material" uid="uid://digci1s10n61m" path="res://Models/Materials/dev_grid_dark.material" id="3_s3m2f"]
 [ext_resource type="Material" uid="uid://cj2frxgnx6ge8" path="res://Models/Materials/dev_grid_orange.material" id="4_l1v54"]
 [ext_resource type="Texture2D" uid="uid://cfxywihntd15s" path="res://Textures/debugShape_Cube_debugShape_Cube.png" id="6_nsykl"]
@@ -10,6 +11,7 @@
 [ext_resource type="Material" uid="uid://d3i4lp1ikf0vw" path="res://Models/Materials/te_Building_ScaleBuilding.material" id="8_d2652"]
 [ext_resource type="PackedScene" path="res://addons/prototype tools/CSGStairMaker3D.tscn" id="8_hvu08"]
 [ext_resource type="PackedScene" uid="uid://b03xf0g1chji" path="res://Models/Prefabs/te_Road_Railling01.tscn" id="9_twod6"]
+[ext_resource type="PackedScene" uid="uid://bte4wvkf1t18g" path="res://Scenes/InGameMap/MasterUserInterface.tscn" id="11_7kqbp"]
 [ext_resource type="PackedScene" uid="uid://nhmnv2kjskwc" path="res://Models/Lowpoly models/Road_RazorWire_01.glb" id="11_wwyru"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_504j8"]
@@ -488,8 +490,11 @@ shadow_mesh = SubResource("ArrayMesh_2k0dy")
 
 [node name="World" type="Node3D"]
 
-[node name="GameLoop" type="Node" parent="."]
-script = ExtResource("1_pvh21")
+[node name="DebugDrawSystem" parent="." instance=ExtResource("1_be8cb")]
+
+[node name="PlayerStatisticsManager" parent="." instance=ExtResource("2_qw42h")]
+
+[node name="MasterUserInterface" parent="." instance=ExtResource("11_7kqbp")]
 
 [node name="Player" parent="." instance=ExtResource("2_7s577")]
 editor_description = "是玩家的说。"

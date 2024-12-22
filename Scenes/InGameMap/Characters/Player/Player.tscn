@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bcvp2680pfq1x"]
+[gd_scene load_steps=11 format=3 uid="uid://bcvp2680pfq1x"]
 
-[ext_resource type="Script" path="res://Scripts/Characters/Player/BasicMovementManager.cs" id="1_sc64b"]
-[ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerCameraSmoothing.cs" id="2_7li0q"]
-[ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerHeadLeaning.cs" id="2_etq1k"]
-[ext_resource type="Script" path="res://Scripts/Characters/Player/StairDetector.cs" id="3_bsoh3"]
-[ext_resource type="Script" path="res://Scripts/Characters/Player/LeaningDetector.cs" id="4_vuequ"]
-[ext_resource type="PackedScene" uid="uid://bte4wvkf1t18g" path="res://Scenes/UI/ui.tscn" id="5_g5lxb"]
+[ext_resource type="Script" path="res://Scripts/InGameMap/Characters/Player/BasicMovementManager.cs" id="1_sc64b"]
+[ext_resource type="Script" path="res://Scripts/InGameMap/Characters/Player/PlayerCameraSmoothing.cs" id="2_7li0q"]
+[ext_resource type="Script" path="res://Scripts/InGameMap/Characters/Player/PlayerHeadLeaning.cs" id="2_etq1k"]
+[ext_resource type="Script" path="res://Scripts/InGameMap/Characters/Player/StairDetector.cs" id="3_bsoh3"]
+[ext_resource type="Script" path="res://Scripts/InGameMap/Characters/Player/LeaningDetector.cs" id="4_vuequ"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iryt3"]
 albedo_color = Color(0.304159, 0.325006, 0.329152, 0.027451)
@@ -36,10 +35,13 @@ height = 0.4
 
 [node name="Player" type="CharacterBody3D"]
 physics_interpolation_mode = 1
+editor_description = "玩家操控的主角色"
 collision_layer = 32768
 floor_max_angle = 0.808087
 
 [node name="BasicMovementManager" type="Node" parent="." node_paths=PackedStringArray("playerBody", "collision", "topCast", "headPivot", "head", "stairDetector")]
+editor_description = "该节点通过引用玩家的 CharacterBody 来控制其移动
+"
 script = ExtResource("1_sc64b")
 playerBody = NodePath("..")
 collision = NodePath("../Collision")
@@ -114,11 +116,3 @@ debug_shape_custom_color = Color(1, 1, 0, 1)
 editor_description = "该射线检测一定距离的下方是否为地面，如果没有碰撞，说明在下方这段距离没有可供玩家角色站立/吸附的地方"
 target_position = Vector3(0, -0.35, 0)
 debug_shape_custom_color = Color(1, 1, 0, 1)
-
-[node name="Ui" parent="." instance=ExtResource("5_g5lxb")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-mouse_filter = 1

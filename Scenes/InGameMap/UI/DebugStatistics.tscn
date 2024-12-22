@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd83b12q4v7ij"]
+
+[ext_resource type="Script" path="res://Scripts/InGameMap/UI/DebugStatistics.cs" id="1_s5v1m"]
+
+[node name="DebugStatistics" type="Control" node_paths=PackedStringArray("velocity", "health", "endurance", "hunger", "defense", "carryWeight")]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_s5v1m")
+velocity = NodePath("velocity")
+health = NodePath("health")
+endurance = NodePath("endurance")
+hunger = NodePath("hunger")
+defense = NodePath("defense")
+carryWeight = NodePath("carryWeight")
+
+[node name="PlayerStats" type="Label" parent="."]
+layout_mode = 1
+offset_left = 11.0
+offset_top = 7.0
+offset_right = 125.0
+offset_bottom = 35.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "PlayerStats:"
+
+[node name="velocity" type="Label" parent="."]
+layout_mode = 1
+offset_left = 11.0
+offset_top = 35.0
+offset_right = 134.0
+offset_bottom = 58.0
+text = "velocity:"
+
+[node name="health" type="Label" parent="."]
+layout_mode = 1
+offset_left = 11.0
+offset_top = 58.0
+offset_right = 125.0
+offset_bottom = 81.0
+text = "health:"
+
+[node name="endurance" type="Label" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 81.0
+offset_right = 99.0
+offset_bottom = 104.0
+text = "endurance:"
+
+[node name="hunger" type="Label" parent="."]
+layout_mode = 1
+offset_left = 11.0
+offset_top = 104.0
+offset_right = 71.0
+offset_bottom = 127.0
+text = "hunger:"
+
+[node name="defense" type="Label" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 127.0
+offset_right = 77.0
+offset_bottom = 150.0
+text = "defense:"
+
+[node name="carryWeight" type="Label" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 150.0
+offset_right = 110.0
+offset_bottom = 173.0
+text = "carryWeight:"

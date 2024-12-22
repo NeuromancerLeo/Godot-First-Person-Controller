@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://bte4wvkf1t18g"]
+
+[ext_resource type="Script" path="res://Scripts/InGameMap/MasterUserInterface.cs" id="1_spsx0"]
+[ext_resource type="Texture2D" uid="uid://dblb5hfviwl0p" path="res://Textures/crosshair.png" id="2_dl8br"]
+[ext_resource type="PackedScene" uid="uid://cd83b12q4v7ij" path="res://Scenes/InGameMap/UI/DebugStatistics.tscn" id="3_pr36i"]
+
+[node name="MasterUserInterface" type="Control" node_paths=PackedStringArray("debugStatisticUI")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_spsx0")
+debugStatisticUI = NodePath("DebugStatistics")
+
+[node name="ScreenCrosshair" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_dl8br")
+
+[node name="DebugStatistics" parent="." instance=ExtResource("3_pr36i")]
+layout_mode = 1

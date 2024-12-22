@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx0fgj3y8d8hx"]
+
+[ext_resource type="Script" path="res://Scripts/InGameMap/DebugDrawSystem.cs" id="1_o87qq"]
+[ext_resource type="PackedScene" uid="uid://bua2kp2sa8bkw" path="res://Scenes/InGameMap/Props/debugShape_Cube.tscn" id="2_qa8uu"]
+
+[node name="DebugDrawSystem" type="Node"]
+script = ExtResource("1_o87qq")
+_cubeShape = ExtResource("2_qa8uu")
