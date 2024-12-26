@@ -5,7 +5,7 @@ namespace ZombieWorldWalkDemo.Scripts.Global
 {
     /// <summary>
     /// 玩家（Player）的数据管理脚本类，为全局的自动加载脚本。管理玩家（Player）的各项数据及其数值基本行为，外部（包括 Player）可以通过调用其接口读取或修改各项数值.
-    /// <para><see cref="PlayerStatisticsManager"/> 承担处理的任务有：将数据限制在规定的大小、根据数据的恢复速度修改其数值、提供数据访问和修改的接口、以及对数据进行外部的保存与读取</para>
+    /// <para><see cref="PlayerStatisticsManager"/> 承担处理的任务有：作为各种玩家数据的容器、将数据限制在规定的大小、根据数据的恢复速度修改其数值、提供数据访问和修改的接口、对数据进行外部的保存与读取</para>
     /// <para>注：<see cref="PlayerStatisticsManager"/> 并不处理玩家数据值相关以外的事务，如玩家生命值为 0 时的死亡动画播放、耐力值为 0 时玩家无法跳跃或奔跑的逻辑、玩家使用某种物品、超重逻辑等均不在 <see cref="PlayerStatisticsManager"/> 的职责内，
     /// 它仅向外提供接口以让外部拥有读取和修改玩家数值的能力，而外部则需根据这些数值来独自编写对应的游戏逻辑. </para>
     /// <para> <see cref="PlayerStatisticsManager"/> 不包含 Player 的速度（velocity），因为这会涉及到对游戏地图场景中 Player 的引用从而破坏该全局脚本的全局性，若要获取玩家的当前速度值请直接对场景中的 Player 进行引用.</para>
