@@ -1,6 +1,6 @@
 using Godot;
 using System;
-using ZombieWorldWalkDemo.Scripts.InGameMap.Characters.Player;
+using ZombieWorldWalkDemo.Scripts.Global;
 
 namespace ZombieWorldWalkDemo.Scripts.InGameMap.UI
 {
@@ -8,6 +8,7 @@ namespace ZombieWorldWalkDemo.Scripts.InGameMap.UI
     {
         [ExportCategory("玩家数据相关")]
         PlayerStatisticsManager _playerStats;
+        CharacterBody3D _playerBody;
         [Export]
         Label velocity;
         [Export]
@@ -23,7 +24,8 @@ namespace ZombieWorldWalkDemo.Scripts.InGameMap.UI
 
         public override void _Ready()
         {
-            _playerStats = (dynamic)GetNode("/root/World/PlayerStatisticsManager");
+            _playerStats = GetNode<PlayerStatisticsManager>("/root/PlayerStatisticsManager");
+            _playerBody = GetNode<CharacterBody3D>("/root/World/Player");
         }
 
         public override void _Process(double delta)
@@ -34,7 +36,7 @@ namespace ZombieWorldWalkDemo.Scripts.InGameMap.UI
             }
             else
             {
-                velocity.Text = "velocity: " + _playerStats.CurrentVelocity.ToString() + " m/s";
+                velocity.Text = "velocity: " + _playerBody.Velocity.Length() + " m/s";
                 health.Text = "health: " + _playerStats.Health.ToString() + " / " + _playerStats.MaxHealth;
                 endurance.Text = "endurance: " + _playerStats.Endurance.ToString() + " / " + _playerStats.MaxEndurance;
                 hunger.Text = "hunger: " + _playerStats.Hunger.ToString() + " / " + _playerStats.MaxHunger;

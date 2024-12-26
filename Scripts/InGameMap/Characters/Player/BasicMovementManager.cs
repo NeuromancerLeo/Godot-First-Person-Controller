@@ -1,5 +1,6 @@
 ﻿using Godot;
 using System;
+using ZombieWorldWalkDemo.Scripts.Global;
 
 namespace ZombieWorldWalkDemo.Scripts.InGameMap.Characters.Player
 {
@@ -391,7 +392,7 @@ namespace ZombieWorldWalkDemo.Scripts.InGameMap.Characters.Player
                 }
                 else if (playerBody.IsOnFloor() || stairDetector.wasSnappedToStairsLastFrame)
                 {
-                    velocity.Y = jumpVelocity * playerStats.InputVelocityAdjustmentPercentage;
+                    velocity.Y = jumpVelocity * playerStats.InputVelocityMultiplier;
                 }
             }
         }
@@ -526,7 +527,7 @@ namespace ZombieWorldWalkDemo.Scripts.InGameMap.Characters.Player
             //DebugDrawSystem = GetNode<DebugDrawSystem>("/root/DebugDrawSystem");
 
             //获取玩家数据的管理节点
-            playerStats = (dynamic)GetNode("/root/World/PlayerStatisticsManager");
+            playerStats = GetNode<PlayerStatisticsManager>("/root/PlayerStatisticsManager");
         }
 
         //这部分处理head节点的旋转来代表第一人称视角相机的基本控制
@@ -565,8 +566,8 @@ namespace ZombieWorldWalkDemo.Scripts.InGameMap.Characters.Player
             //如果有角色移动的输入，修改 playerBody.Velocity
             if (Input.IsActionPressed("movement_forward") | Input.IsActionPressed("movement_backward") | Input.IsActionPressed("movement_left") | Input.IsActionPressed("movement_right"))
             {
-                velocity.X = MovingDirectionWithLength.X * desiredSpeedWhenPlayerIsMoving * playerStats.InputVelocityAdjustmentPercentage;
-                velocity.Z = MovingDirectionWithLength.Z * desiredSpeedWhenPlayerIsMoving * playerStats.InputVelocityAdjustmentPercentage;
+                velocity.X = MovingDirectionWithLength.X * desiredSpeedWhenPlayerIsMoving * playerStats.InputVelocityMultiplier;
+                velocity.Z = MovingDirectionWithLength.Z * desiredSpeedWhenPlayerIsMoving * playerStats.InputVelocityMultiplier;
             }
             else
             {

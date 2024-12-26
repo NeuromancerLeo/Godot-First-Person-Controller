@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bte4wvkf1t18g"]
 
-[ext_resource type="Script" path="res://Scripts/InGameMap/MasterUserInterface.cs" id="1_spsx0"]
+[ext_resource type="Script" path="res://Scripts/InGameMap/UI/MasterUserInterface.cs" id="1_spsx0"]
 [ext_resource type="Texture2D" uid="uid://dblb5hfviwl0p" path="res://Textures/crosshair.png" id="2_dl8br"]
 [ext_resource type="PackedScene" uid="uid://cd83b12q4v7ij" path="res://Scenes/InGameMap/UI/DebugStatistics.tscn" id="3_pr36i"]
 
