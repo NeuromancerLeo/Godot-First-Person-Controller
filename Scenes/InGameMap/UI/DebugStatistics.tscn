@@ -35,6 +35,7 @@ theme_override_font_sizes/font_size = 20
 text = "PlayerStats:"
 
 [node name="inputVelocityMultiplier" type="Label" parent="."]
+layout_mode = 0
 offset_left = 11.0
 offset_top = 35.0
 offset_right = 193.0
@@ -58,6 +59,7 @@ offset_bottom = 114.0
 text = "health:"
 
 [node name="healthRecoverySpeed" type="Label" parent="."]
+layout_mode = 0
 offset_left = 11.0
 offset_top = 114.0
 offset_right = 183.0
@@ -73,6 +75,7 @@ offset_bottom = 170.0
 text = "endurance:"
 
 [node name="enduranceRecoverySpeed" type="Label" parent="."]
+layout_mode = 0
 offset_left = 11.0
 offset_top = 170.0
 offset_right = 216.0
@@ -88,6 +91,7 @@ offset_bottom = 226.0
 text = "hunger:"
 
 [node name="hungerRecoverySpeed" type="Label" parent="."]
+layout_mode = 0
 offset_left = 11.0
 offset_top = 226.0
 offset_right = 189.0
@@ -111,6 +115,7 @@ offset_bottom = 315.0
 text = "carryWeight:"
 
 [node name="maxCarryWeight" type="Label" parent="."]
+layout_mode = 0
 offset_left = 11.0
 offset_top = 315.0
 offset_right = 145.0
