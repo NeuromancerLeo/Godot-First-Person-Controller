@@ -10,17 +10,28 @@ namespace ZombieWorldWalkDemo.Scripts.InGameMap.UI
         PlayerStatisticsManager _playerStats;
         CharacterBody3D _playerBody;
         [Export]
+        Label inputVelocityMultiplier;
+        [Export]
         Label velocity;
+        
         [Export]
         Label health;
         [Export]
+        Label healthRecoverySpeed;
+        [Export]
         Label endurance;
         [Export]
+        Label enduranceRecoverySpeed;
+        [Export]
         Label hunger;
+        [Export]
+        Label hungerRecoverySpeed;
         [Export]
         Label defense;
         [Export]
         Label carryWeight;
+        [Export]
+        Label maxCarryWeight;
 
         public override void _Ready()
         {
@@ -36,12 +47,17 @@ namespace ZombieWorldWalkDemo.Scripts.InGameMap.UI
             }
             else
             {
-                velocity.Text = "velocity: " + _playerBody.Velocity.Length() + " m/s";
-                health.Text = "health: " + _playerStats.Health.ToString() + " / " + _playerStats.MaxHealth;
-                endurance.Text = "endurance: " + _playerStats.Endurance.ToString() + " / " + _playerStats.MaxEndurance;
-                hunger.Text = "hunger: " + _playerStats.Hunger.ToString() + " / " + _playerStats.MaxHunger;
-                defense.Text = "defense: " + _playerStats.Defense.ToString() + " / " + _playerStats.MaxDefense;
-                carryWeight.Text = "carryWeight: " + _playerStats.CarryWeight.ToString() + " kg/" + _playerStats.MaxCarryWeight + " kg";
+                inputVelocityMultiplier.Text = "inputVelocityMultiplier: " + _playerStats.InputVelocityMultiplier;
+                velocity.Text = "velocity: " + _playerBody.Velocity.Length().ToString("F3") + " m/s";
+                health.Text = "health: " + _playerStats.Health.ToString("F3") + " / " + _playerStats.MaxHealth;
+                healthRecoverySpeed.Text = "healthRecoverySpeed: " + _playerStats.HealthRecoverySpeed.ToString("F3") + "/s";
+                endurance.Text = "endurance: " + _playerStats.Endurance.ToString("F3") + " / " + _playerStats.MaxEndurance;
+                enduranceRecoverySpeed.Text = "enduranceRecoverySpeed: " + _playerStats.EnduranceRecoverySpeed.ToString("F3") + "/s";
+                hunger.Text = "hunger: " + _playerStats.Hunger.ToString("F3") + " / " + _playerStats.MaxHunger;
+                hungerRecoverySpeed.Text = "hungerRecoverySpeed: " + _playerStats.HungerRecoverySpeed.ToString("F3") + "/s";
+                defense.Text = "defense: " + _playerStats.Defense.ToString("F3") + " / " + _playerStats.MaxDefense;
+                carryWeight.Text = "carryWeight(kg): " + _playerStats.CarryWeight.ToString("F3") + " / " + _playerStats.MaxCarryWeight.ToString("F3");
+                maxCarryWeight.Text = "maxCarryWeight(kg): " + _playerStats.MaxCarryWeight.ToString("F3");
             }
         }
     }

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/InGameMap/UI/DebugStatistics.cs" id="1_s5v1m"]
 
-[node name="DebugStatistics" type="Control" node_paths=PackedStringArray("velocity", "health", "endurance", "hunger", "defense", "carryWeight")]
+[node name="DebugStatistics" type="Control" node_paths=PackedStringArray("inputVelocityMultiplier", "velocity", "health", "healthRecoverySpeed", "endurance", "enduranceRecoverySpeed", "hunger", "hungerRecoverySpeed", "defense", "carryWeight", "maxCarryWeight")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -12,12 +12,17 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_s5v1m")
+inputVelocityMultiplier = NodePath("inputVelocityMultiplier")
 velocity = NodePath("velocity")
 health = NodePath("health")
+healthRecoverySpeed = NodePath("healthRecoverySpeed")
 endurance = NodePath("endurance")
+enduranceRecoverySpeed = NodePath("enduranceRecoverySpeed")
 hunger = NodePath("hunger")
+hungerRecoverySpeed = NodePath("hungerRecoverySpeed")
 defense = NodePath("defense")
 carryWeight = NodePath("carryWeight")
+maxCarryWeight = NodePath("maxCarryWeight")
 
 [node name="PlayerStats" type="Label" parent="."]
 layout_mode = 1
@@ -29,50 +34,85 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "PlayerStats:"
 
+[node name="inputVelocityMultiplier" type="Label" parent="."]
+offset_left = 11.0
+offset_top = 35.0
+offset_right = 193.0
+offset_bottom = 58.0
+text = "inputVelocityMultiplier:"
+
 [node name="velocity" type="Label" parent="."]
 layout_mode = 1
 offset_left = 11.0
-offset_top = 35.0
+offset_top = 58.0
 offset_right = 134.0
-offset_bottom = 58.0
+offset_bottom = 81.0
 text = "velocity:"
 
 [node name="health" type="Label" parent="."]
 layout_mode = 1
 offset_left = 11.0
-offset_top = 58.0
+offset_top = 91.0
 offset_right = 125.0
-offset_bottom = 81.0
+offset_bottom = 114.0
 text = "health:"
+
+[node name="healthRecoverySpeed" type="Label" parent="."]
+offset_left = 11.0
+offset_top = 114.0
+offset_right = 183.0
+offset_bottom = 137.0
+text = "healthRecoverySpeed:"
 
 [node name="endurance" type="Label" parent="."]
 layout_mode = 0
 offset_left = 11.0
-offset_top = 81.0
+offset_top = 147.0
 offset_right = 99.0
-offset_bottom = 104.0
+offset_bottom = 170.0
 text = "endurance:"
+
+[node name="enduranceRecoverySpeed" type="Label" parent="."]
+offset_left = 11.0
+offset_top = 170.0
+offset_right = 216.0
+offset_bottom = 193.0
+text = "enduranceRecoverySpeed:"
 
 [node name="hunger" type="Label" parent="."]
 layout_mode = 1
 offset_left = 11.0
-offset_top = 104.0
+offset_top = 203.0
 offset_right = 71.0
-offset_bottom = 127.0
+offset_bottom = 226.0
 text = "hunger:"
+
+[node name="hungerRecoverySpeed" type="Label" parent="."]
+offset_left = 11.0
+offset_top = 226.0
+offset_right = 189.0
+offset_bottom = 249.0
+text = "hungerRecoverySpeed:"
 
 [node name="defense" type="Label" parent="."]
 layout_mode = 0
 offset_left = 11.0
-offset_top = 127.0
+offset_top = 259.0
 offset_right = 77.0
-offset_bottom = 150.0
+offset_bottom = 282.0
 text = "defense:"
 
 [node name="carryWeight" type="Label" parent="."]
 layout_mode = 0
 offset_left = 11.0
-offset_top = 150.0
+offset_top = 292.0
 offset_right = 110.0
-offset_bottom = 173.0
+offset_bottom = 315.0
 text = "carryWeight:"
+
+[node name="maxCarryWeight" type="Label" parent="."]
+offset_left = 11.0
+offset_top = 315.0
+offset_right = 145.0
+offset_bottom = 338.0
+text = "maxCarryWeight:"
