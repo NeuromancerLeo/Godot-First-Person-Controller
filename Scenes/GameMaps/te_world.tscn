@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" path="res://addons/prototype tools/CSGStairMaker3D.tscn" id="8_hvu08"]
 [ext_resource type="PackedScene" uid="uid://b03xf0g1chji" path="res://Models/Prefabs/te_Road_Railling01.tscn" id="9_twod6"]
 [ext_resource type="PackedScene" uid="uid://bte4wvkf1t18g" path="res://Scenes/InGameMap/UI/MasterUserInterface.tscn" id="11_7kqbp"]
-[ext_resource type="PackedScene" uid="uid://nhmnv2kjskwc" path="res://Models/Lowpoly models/Road_RazorWire_01.glb" id="11_wwyru"]
+[ext_resource type="PackedScene" uid="uid://bwu33iftjhbut" path="res://Scenes/InGameMap/Props/Road_RazorWire_01.tscn" id="12_bsipm"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_504j8"]
 panorama = ExtResource("1_ihvd8")
@@ -963,8 +963,5 @@ transform = Transform3D(0.91407, -0.264988, -0.307013, 0, 0.757018, -0.653394, 0
 use_collision = true
 size = Vector3(1.01611, 0.326141, 14.8426)
 
-[node name="Road_RazorWire_01" parent="Environment/Sence" instance=ExtResource("11_wwyru")]
-transform = Transform3D(0.0267527, 0, -0.999642, 0, 1, 0, 0.999642, 0, 0.0267527, 8.60666, 0.0270202, 14.8168)
-
-[node name="Road_RazorWire_02" parent="Environment/Sence" instance=ExtResource("11_wwyru")]
-transform = Transform3D(0.0215706, 0, -0.999767, 0, 1, 0, 0.999767, 0, 0.0215706, 3.99652, -2.38419e-07, -0.590617)
+[node name="Road_RazorWire_01" parent="Environment/Sence" instance=ExtResource("12_bsipm")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.81962, 0, -0.498488)

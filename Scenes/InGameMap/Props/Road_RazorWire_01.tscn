@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwu33iftjhbut"]
+
+[ext_resource type="PackedScene" uid="uid://nhmnv2kjskwc" path="res://Models/Lowpoly models/Road_RazorWire_01.glb" id="1_1sbfy"]
+[ext_resource type="Script" path="res://Scripts/InGameMap/Props/RazorWire.cs" id="2_wekob"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ckngj"]
+size = Vector3(0.707817, 0.713821, 3.05203)
+
+[node name="Road_RazorWire_01" instance=ExtResource("1_1sbfy")]
+
+[node name="Area3D" type="Area3D" parent="." index="1"]
+collision_layer = 32769
+collision_mask = 32769
+monitorable = false
+script = ExtResource("2_wekob")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00273514, 0.347515, 1.49406)
+shape = SubResource("BoxShape3D_ckngj")
